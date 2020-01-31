@@ -1,2 +1,16 @@
 # oraculo_v2_python
-Sistem Aleatório de Criação de Aventuras para RPG.
+## RPG SOLO - Oráculo II - Sistema Aleatório de Criação de Aventuras para RPG.
+### Idealizado por:
+> Tiago Alves de Morais - tdetudo3785@gmail.com
+### Aplicativo Desenvolvido por:
+> Alex Marzani Motta - alexmarzanimotta@hotmail.com
+
+# Descrição:
+
+Baseado na lista de alternativas desenvolvida por Tiago Alves, decidi automatizar esse processo
+em Python para facilitar a criação de campanhas utilizando o sistema desenvolvido pelo mesmo.
+
+Todo o crédito desse sistema é de seu criador, cabendo a mim apenas transformar em aplicativo, sem alterar
+seu conteúdo.
+
+> Início do Projeto: 31/01/2020
