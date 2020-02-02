@@ -14,4 +14,7 @@ Todo o crédito desse sistema é de seu criador, cabendo a mim apenas transforma
 seu conteúdo.
 
 > Início do Projeto: 31/01/2020
+
 > Geradores de Aventura, Clima, Eventos e Resposta do Mestre feitos e Barra de Menu adicionada - 01/02/2020
+
+> Gerador de NPC adicionado - 01/02/2020
