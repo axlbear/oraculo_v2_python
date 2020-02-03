@@ -18,3 +18,5 @@ seu conteúdo.
 > Geradores de Aventura, Clima, Eventos e Resposta do Mestre feitos e Barra de Menu adicionada - 01/02/2020
 
 > Gerador de NPC adicionado - 01/02/2020
+
+> Gerador de Eventos Complexos adicionado, Gerador de Terrenos (EM ANDAMENTO) e novo Design do GUI - 03/02/2020
