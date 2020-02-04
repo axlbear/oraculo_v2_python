@@ -19,4 +19,6 @@ seu conteúdo.
 
 > Gerador de NPC adicionado - 01/02/2020
 
-> Gerador de Eventos Complexos adicionado, Gerador de Terrenos (EM ANDAMENTO) e novo Design do GUI - 03/02/2020
+> Gerador de Eventos Complexos adicionado, Gerador de Terrenos (EM ANDAMENTO) e novo Design da GUI - 03/02/2020
+
+> Gerador de Terrenos e Gerador de Vilarejo finalizados - 04/02/2020
