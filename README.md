@@ -24,3 +24,5 @@ seu conteúdo.
 > Gerador de Terrenos e Gerador de Vilarejo finalizados - 04/02/2020
 
 > Gerador de Vilão, Mapa e Dados prontos, leves alterações no Design - 05/02/2020
+
+> Aplicativo Finalizado. - 06/02/2020
