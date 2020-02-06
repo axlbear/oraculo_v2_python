@@ -1,13 +1,15 @@
 # IMPORTS
 import tkinter as tk
-import tkinter.filedialog as fd
 import tkinter.ttk as ttk
 import tkinter.messagebox as ms
+from PIL import ImageTk, Image
 import os
 import random
-import openpyxl
 
 # FUNCTIONS
+def creditos():
+    ms.showinfo('Oráculo II - RPG SOLO', 'ORÁCULO II - RPG SOLO - Gerador Aleatório de Campanhas\nIdealizador do sistema: Tiago Alves de Morais - tdetudo3785@gmail.com\nApp desenvolvido por: Alex Marzani Motta - alexmarzanimotta@hotmail.com\nTodos os créditos deste projeto vão ao seu Idealizador,\ncabendo a mim apenas desenvolver o aplicativo.')
+
 def gerarAventura():
     randomUm = ['Derrotar', 'Destruir', 'Descobrir', 'Escoltar', 'Impedir', 'Proteger', 'Viajar até', 'Transportar', 'Avançar', 'Escapar', 'Explorar', 'Certificar', 'Recuperar', 'Libertar', 'Salvar', 'Resgatar', 'Atrair', 'Desbaratar', 'Executar', 'Seguir']
     randomDois = ['Cidade', 'Vilã(o)', 'Princesa', 'Principe', 'Pessoa', 'Amigo', 'Grupo', 'Fortaleza', 'Monstro', 'Maldição', 'Culto', 'Cidade Perdida', 'Povoado', 'Família', 'Reino', 'Raça', 'Rei', 'Rainha', 'Monstro', 'Animal Mágico', 'Espírito']
@@ -120,6 +122,83 @@ def gerarVilajo():
     opcaoTemplo.set(random.choice(randomTemplo))
     opcaoCastelo.set(random.choice(randomCastelo))
 
+def gerarVilao():
+    randomTipo = ['Um único Vilão', 'Uma Criatura Mística', 'Um Monstro Específico', 'Um grupo de indivíduos', 'Um fenômeno', 'Entidade', 'Avatar de um Deus', 'Semi-Deus', 'Mago Poderoso', 'Um Lich', 'Guerreiro Poderoso', 'Uma Maldição']
+    randomOrigem = ['Mundo do Crime', 'Riqueza', 'Sobrenatural', 'Acidente', 'Desconhecida', 'Inata', 'do Passado', 'Patriotismo', 'de um Erro', 'da Miséria', 'Feitiço']
+    randomObjetivo = ['Conquista', 'Fortuna', 'Sobrevivência', 'Provar Valor', 'Anarquia', 'Violência', 'Caos', 'Diversão', 'Destruição', 'Fins justificaram os meios', 'Intenção boa, execução ruim', 'Algo deu errado']
+    randomPersonalidadeVilao = ['Gentil', 'Habilidoso', 'Honesto', 'Idealista', 'Líder Nato', 'Ignorante', 'Impaciente', 'Impetuoso', 'Inconsequente', 'Inconstante', 'Caótico']
+    randomTesouro = ['XP em Dobro', 'Arma mágica', 'Munição', 'Armadura Mágica', 'Tesouro', 'Sorteie 2x', 'Poções Mágicas']
+    
+    opcaoTipo.set(random.choice(randomTipo))
+    opcaoOrigem.set(random.choice(randomOrigem))
+    opcaoObjetivo.set(random.choice(randomObjetivo))
+    opcaoPersonalidadeVilao.set(random.choice(randomPersonalidadeVilao))
+    opcaoTesouro.set(random.choice(randomTesouro))
+
+def gerarMapa():
+    opcaoVertical.set(random.choice(range(1, 13)))
+    opcaoHorizontal.set(random.choice(range(1, 9)))
+
+def visualizarMapa():
+    template = tk.Toplevel()
+    template.title('Oráculo II - RPG SOLO - Template')
+    grid = tk.PhotoImage(file='Grid.png')
+    canvas = tk.Label(template, image=grid)
+    canvas.image = grid
+    canvas.pack()
+
+def gerarEnigma():
+    randomAcao = ['Apertar', 'Puxar', 'Segurar', 'Agarrar e Soltar', 'Empurrar', 'Comparar com outro objeto', 'Ler em voz alta', 'Acertar', 'Concentrar o poder', 'Pisar']
+    randomEnigma = ['Um botão', 'Um mecanismo', 'Runas', 'Peças', 'Pedras', 'Objeto', 'Pergaminho', 'Sensor', 'Cristais', 'Invocação', 'Alavanca']
+
+    opcaoAcao.set(random.choice(randomAcao))
+    opcaoEnigma.set(random.choice(randomEnigma))
+
+def rolarDados():
+    valorTotal = 0
+    
+    if box.get() == 'd4':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 5))
+
+        opcaoDado.set(valorTotal)
+        
+    elif box.get() == 'd6':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 7))
+
+        opcaoDado.set(valorTotal)
+
+    elif box.get() == 'd10':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 11))
+
+        opcaoDado.set(valorTotal)
+
+    elif box.get() == 'd12':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 13))
+
+        opcaoDado.set(valorTotal)
+
+    elif box.get() == 'd20':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 21))
+
+        critico = 20 * opcaoQuantidade.get()
+        if valorTotal == critico:
+            ms.showinfo('Crítico', 'Acerto Crítico!')
+        elif valorTotal == 1:
+            ms.showerror('Crítico', 'Falha Crítica!')
+
+        opcaoDado.set(valorTotal)
+
+    elif box.get() == 'd100':
+        for i in range(0, opcaoQuantidade.get()):
+            valorTotal += random.choice(range(1, 101))
+
+        opcaoDado.set(valorTotal)
+
 
 # INIT
 os.system('cls')
@@ -128,44 +207,58 @@ root = tk.Tk()
 ######################################## Painel Um
 painelUm = tk.Frame(root, relief=tk.RAISED, bd=5, padx=4, pady=4)
 painelUm.grid(row=0, column=0, sticky=tk.N)
+
 ######################################## Conteúdo do Painel Um
 geradorAventurasFrame = tk.Frame(painelUm, relief=tk.GROOVE, bd=3, padx=4, pady=4)
-geradorAventurasFrame.grid(row=0, column=0)
+geradorAventurasFrame.grid(row=0, column=0, sticky=tk.E)
 
-geradorClimaFrame = tk.Frame(painelUm, padx=4, pady=4)
-geradorClimaFrame.grid(row=1, column=0)
+geradorClimaFrame = tk.Frame(painelUm, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorClimaFrame.grid(row=1, column=0, sticky=tk.E)
 
-geradorRespostaFrame = tk.Frame(painelUm, padx=4, pady=4)
-geradorRespostaFrame.grid(row=2, column=0)
+geradorRespostaFrame = tk.Frame(painelUm, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorRespostaFrame.grid(row=2, column=0, sticky=tk.E)
 
-geradorEventoFrame = tk.Frame(painelUm, padx=4, pady=4)
-geradorEventoFrame.grid(row=3, column=0)
+geradorEventoFrame = tk.Frame(painelUm, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorEventoFrame.grid(row=3, column=0, sticky=tk.E)
 
 geradorNPCFrame = tk.Frame(painelUm, relief=tk.GROOVE, bd=3, padx=4, pady=4)
-geradorNPCFrame.grid(row=4, column=0)
+geradorNPCFrame.grid(row=4, column=0, sticky=tk.E)
 
 ######################################## Painel Dois
 painelDois = tk.Frame(root, padx=4, pady=4)
 painelDois.grid(row=0, column=1, sticky=tk.N)
+
 ######################################## Conteúdo do Painel Dois
 geradorTerreno = tk.Frame(painelDois, relief=tk.GROOVE, bd=3, padx=4, pady=4)
 geradorTerreno.grid(row=0, column=0)
+
+geradorVilao = tk.Frame(painelDois, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorVilao.grid(row=1, column=0)
+
+geradorEnigma = tk.Frame(painelDois, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorEnigma.grid(row=2, column=0)
 
 ######################################## Painel Três
 painelTres = tk.Frame(root, relief=tk.RAISED, bd=5, padx=4, pady=4)
 painelTres.grid(row=0, column=2, sticky=tk.N)
 
 ######################################## Conteúdo do Painel Três
-geradorEventoFrame2 = tk.Frame(painelTres, relief=tk.GROOVE, bd=3, padx=4, pady=4)
-geradorEventoFrame2.grid(row=0, column=0)
+geradorEventoFrame2 = tk.Frame(painelTres, relief=tk.GROOVE, bd=3, padx=4, pady=4,)
+geradorEventoFrame2.grid(row=0, column=0, columnspan=2)
 
 geradorVilarejo = tk.Frame(painelTres, relief=tk.GROOVE, bd=3, padx=4, pady=4)
-geradorVilarejo.grid(row=1, column=0)
+geradorVilarejo.grid(row=1, column=0, columnspan=2)
 
+geradorMapa = tk.Frame(painelTres, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorMapa.grid(row=2, column=0, sticky=tk.W)
+
+geradorDados = tk.Frame(painelTres, relief=tk.GROOVE, bd=3, padx=4, pady=4)
+geradorDados.grid(row=2, column=1, sticky=tk.E)
 
 # GUI
 ######################################## Conteúdo do Painel Um
-tk.Label(geradorAventurasFrame, text='Gerador de Aventuras', font=('Tahoma',14,'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+#### Gerador Aventura
+tk.Label(geradorAventurasFrame, text='Gerador de Aventuras', font=('Tahoma', 12,'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 tk.Label(geradorAventurasFrame, text='O(s) Herói(s) precisam...: ').grid(row=1, column=0, sticky=tk.E)
 tk.Label(geradorAventurasFrame, text='um(a)...: ').grid(row=2, column=0, sticky=tk.E)
 tk.Label(geradorAventurasFrame, text='que foi...: ').grid(row=3, column=0, sticky=tk.E)
@@ -180,28 +273,32 @@ opcaoQuatro = tk.StringVar()
 tk.Entry(geradorAventurasFrame, textvariable=opcaoQuatro, width=32, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
 
 tk.Button(geradorAventurasFrame, text='Gerar Aventura', command=gerarAventura).grid(row=5, column=0, columnspan=2)
-
-tk.Label(geradorClimaFrame, text='Clima', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+####
+#### Gerador Clima
+tk.Label(geradorClimaFrame, text='Clima', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 opcaoClima = tk.StringVar()
-tk.Entry(geradorClimaFrame, textvariable=opcaoClima, width=32, state=tk.DISABLED).grid(row=1, column=0, columnspan=2)
+tk.Entry(geradorClimaFrame, textvariable=opcaoClima, width=32, state=tk.DISABLED).grid(row=1, column=1)
 opcaoHorario = tk.StringVar()
-tk.Entry(geradorClimaFrame, textvariable=opcaoHorario, width=32, state=tk.DISABLED).grid(row=2, column=0, columnspan=2)
+tk.Entry(geradorClimaFrame, textvariable=opcaoHorario, width=32, state=tk.DISABLED).grid(row=2, column=1)
 
-tk.Button(geradorClimaFrame, text='Gerar Clima', command=gerarClima).grid(row=3, column=0, columnspan=2)
-
-tk.Label(geradorRespostaFrame, text='Resposta', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Button(geradorClimaFrame, text='Gerar Clima', command=gerarClima).grid(row=1, column=0, rowspan=2)
+####
+#### Gerador Resposta
+tk.Label(geradorRespostaFrame, text='Resposta', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 opcaoResposta = tk.StringVar()
-tk.Entry(geradorRespostaFrame, textvariable=opcaoResposta, width=32, state=tk.DISABLED).grid(row=1, column=0, columnspan=2)
+tk.Entry(geradorRespostaFrame, textvariable=opcaoResposta, width=32, state=tk.DISABLED).grid(row=1, column=1)
 
-tk.Button(geradorRespostaFrame, text='Gerar Resposta', command=gerarResposta).grid(row=2, column=0, columnspan=2)
-
-tk.Label(geradorEventoFrame, text='Eventos', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Button(geradorRespostaFrame, text='Gerar Resposta', command=gerarResposta).grid(row=1, column=0)
+####
+#### Gerador Evento
+tk.Label(geradorEventoFrame, text='Eventos', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 opcaoEvento = tk.StringVar()
-tk.Entry(geradorEventoFrame, textvariable=opcaoEvento, width=32, state=tk.DISABLED).grid(row=1, column=0, columnspan=2)
+tk.Entry(geradorEventoFrame, textvariable=opcaoEvento, width=32, state=tk.DISABLED).grid(row=1, column=1)
 
-tk.Button(geradorEventoFrame, text='Gerar Evento', command=gerarEvento).grid(row=2, column=0, columnspan=2)
-
-tk.Label(geradorNPCFrame, text='NPC', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Button(geradorEventoFrame, text='Gerar Evento', command=gerarEvento).grid(row=1, column=0)
+####
+#### Gerador NPC
+tk.Label(geradorNPCFrame, text='NPC', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 tk.Label(geradorNPCFrame, text='Este NPC é Influente?: ').grid(row=1, column=0, sticky=tk.E)
 tk.Label(geradorNPCFrame, text='Raça: ').grid(row=2, column=0, sticky=tk.E)
 tk.Label(geradorNPCFrame, text='Gênero: ').grid(row=3, column=0, sticky=tk.E)
@@ -229,7 +326,8 @@ tk.Button(geradorNPCFrame, text='Gerar NPC', command=gerarNPC).grid(row=8, colum
 ########################################
 
 ######################################## Conteúdo do Painel Dois
-tk.Label(geradorTerreno, text='Gerador de Terreno', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+#### Gerador Terreno
+tk.Label(geradorTerreno, text='Gerador de Terreno', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 tk.Label(geradorTerreno, text='Tipo de Terreno: ').grid(row=1, column=0, sticky=tk.E)
 tk.Label(geradorTerreno, text='Tamanho: ').grid(row=2, column=0, sticky=tk.E)
 tk.Label(geradorTerreno, text='Salas/Passagens: ').grid(row=3, column=0, sticky=tk.E)
@@ -248,8 +346,61 @@ opcaoSubterraneos = tk.StringVar()
 tk.Entry(geradorTerreno, textvariable=opcaoSubterraneos, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
 
 tk.Button(geradorTerreno, text='Gerar Terreno', command=gerarTerreno).grid(row=6, column=0, columnspan=2)
+####
+#### Gerador Vilão
+tk.Label(geradorVilao, text='Gerador de Vilão', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Label(geradorVilao, text='Tipo de Vilão: ').grid(row=1, column=0, sticky=tk.E)
+tk.Label(geradorVilao, text='Origem: ').grid(row=2, column=0, sticky=tk.E)
+tk.Label(geradorVilao, text='Objetivo: ').grid(row=3, column=0, sticky=tk.E)
+tk.Label(geradorVilao, text='Alinhamento: ').grid(row=4, column=0, sticky=tk.E)
+tk.Label(geradorVilao, text='Tesouro ao ser derrotado: ').grid(row=5, column=0, sticky=tk.E)
 
-tk.Label(geradorVilarejo, text='Gerador de Vilarejo', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+opcaoTipo = tk.StringVar()
+tk.Entry(geradorVilao, textvariable=opcaoTipo, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+opcaoOrigem = tk.StringVar()
+tk.Entry(geradorVilao, textvariable=opcaoOrigem, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+opcaoObjetivo = tk.StringVar()
+tk.Entry(geradorVilao, textvariable=opcaoObjetivo, state=tk.DISABLED).grid(row=3, column=1, sticky=tk.W)
+opcaoPersonalidadeVilao = tk.StringVar()
+tk.Entry(geradorVilao, textvariable=opcaoPersonalidadeVilao, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
+opcaoTesouro = tk.StringVar()
+tk.Entry(geradorVilao, textvariable=opcaoTesouro, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
+
+tk.Button(geradorVilao, text='Gerar Vilão', command=gerarVilao).grid(row=6, column=0, columnspan=2)
+####
+#### Gerador Enigma
+tk.Label(geradorEnigma, text='Gerador de Enigma', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Label(geradorEnigma, text='Ação: ').grid(row=1, column=0, sticky=tk.E)
+tk.Label(geradorEnigma, text='Enigma: ').grid(row=2, column=0, sticky=tk.E)
+
+opcaoAcao = tk.StringVar()
+tk.Entry(geradorEnigma, textvariable=opcaoAcao, width=35, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+opcaoEnigma = tk.StringVar()
+tk.Entry(geradorEnigma, textvariable=opcaoEnigma, width=35, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+
+tk.Button(geradorEnigma, text='Gerar Enigma', command=gerarEnigma).grid(row=3, column=0, columnspan=2)
+########################################
+
+######################################## Conteúdo do Painel Três
+#### Gerador Evento Complexo
+tk.Label(geradorEventoFrame2, text='Gerador de Evento Complexo', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+eventoUm = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoUm, width=75, state=tk.DISABLED).grid(row=1, column=0, columnspan=2)
+eventoDois = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoDois, width=75, state=tk.DISABLED).grid(row=2, column=0, columnspan=2)
+eventoTres = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoTres, width=75, state=tk.DISABLED).grid(row=3, column=0, columnspan=2)
+eventoQuatro = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoQuatro, width=75, state=tk.DISABLED).grid(row=4, column=0, columnspan=2)
+eventoCinco = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoCinco, width=75, state=tk.DISABLED).grid(row=5, column=0, columnspan=2)
+eventoSeis = tk.StringVar()
+tk.Entry(geradorEventoFrame2, textvariable=eventoSeis, width=75, state=tk.DISABLED).grid(row=6, column=0, columnspan=2)
+
+tk.Button(geradorEventoFrame2, text='Gerar Evento', command=gerarEvento2).grid(row=7, column=0, columnspan=2)
+####
+#### Gerador Vilarejo
+tk.Label(geradorVilarejo, text='Gerador de Vilarejo', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 tk.Label(geradorVilarejo, text='Aspecto: ').grid(row=1, column=0, sticky=tk.E)
 tk.Label(geradorVilarejo, text='Sociedade: ').grid(row=2, column=0, sticky=tk.E)
 tk.Label(geradorVilarejo, text='Conhecida por...: ').grid(row=3, column=0, sticky=tk.E)
@@ -292,26 +443,40 @@ opcaoCastelo = tk.StringVar()
 tk.Entry(geradorVilarejo, textvariable=opcaoCastelo, width=75, state=tk.DISABLED).grid(row=13, column=1, sticky=tk.W)
 
 tk.Button(geradorVilarejo, text='Gerar Vilarejo', command=gerarVilajo).grid(row=14, column=0, columnspan=2)
+####
+#### Gerador Mapa
+tk.Label(geradorMapa, text='Gerador de Mapa', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Label(geradorMapa, text='VERTICAL: ').grid(row=1, column=0, sticky=tk.E)
+tk.Label(geradorMapa, text='HORIZONTAL: ').grid(row=2, column=0, sticky=tk.E)
 
+opcaoVertical = tk.StringVar()
+tk.Entry(geradorMapa, textvariable=opcaoVertical, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+opcaoHorizontal = tk.StringVar()
+tk.Entry(geradorMapa, textvariable=opcaoHorizontal, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+
+tk.Button(geradorMapa, text='Gerar Mapa', command=gerarMapa).grid(row=3, column=0)
+tk.Button(geradorMapa, text='Visualizar Template', command=visualizarMapa).grid(row=3, column=1)
+####
+#### Gerador Dados
+tk.Label(geradorDados, text='Rolar Dados', relief=tk.SUNKEN, font=('Tahoma', 12, 'bold'), bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
+tk.Label(geradorDados, text='Tipo: ').grid(row=1, column=0, sticky=tk.E)
+tk.Label(geradorDados, text='Quantidade: ').grid(row=2, column=0, sticky=tk.E)
+
+opcaoDado = tk.IntVar()
+tk.Entry(geradorDados, textvariable=opcaoDado, state=tk.DISABLED).grid(row=3, column=1)
+
+tipoDado = ['d4', 'd6', 'd10', 'd12', 'd20', 'd100']
+box = ttk.Combobox(geradorDados, values=tipoDado)
+box.set('d20')
+box.grid(row=1, column=1, sticky=tk.W)
+
+opcaoQuantidade = tk.IntVar()
+opcaoQuantidade.set(1)
+tk.Entry(geradorDados, textvariable=opcaoQuantidade).grid(row=2, column=1, sticky=tk.W)
+
+tk.Button(geradorDados, text='Rolar Dado(s)', command=rolarDados).grid(row=3, column=0)
 
 ########################################
-
-######################################## Conteúdo do Painel Três
-tk.Label(geradorEventoFrame2, text='Gerador de Evento Complexo', font=('Tahoma', 14, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
-eventoUm = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoUm, width=75, state=tk.DISABLED).grid(row=1, column=0, columnspan=2)
-eventoDois = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoDois, width=75, state=tk.DISABLED).grid(row=2, column=0, columnspan=2)
-eventoTres = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoTres, width=75, state=tk.DISABLED).grid(row=3, column=0, columnspan=2)
-eventoQuatro = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoQuatro, width=75, state=tk.DISABLED).grid(row=4, column=0, columnspan=2)
-eventoCinco = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoCinco, width=75, state=tk.DISABLED).grid(row=5, column=0, columnspan=2)
-eventoSeis = tk.StringVar()
-tk.Entry(geradorEventoFrame2, textvariable=eventoSeis, width=75, state=tk.DISABLED).grid(row=6, column=0, columnspan=2)
-
-tk.Button(geradorEventoFrame2, text='Gerar Evento', command=gerarEvento2).grid(row=7, column=0, columnspan=2)
 
 # MENU
 menuBar = tk.Menu(root)
@@ -319,19 +484,11 @@ opcaoMenu = tk.Menu(menuBar, tearoff=0)
 sobreMenu = tk.Menu(menuBar, tearoff=0)
 ajudaMenu = tk.Menu(sobreMenu, tearoff=0)
 
-menuBar.add_cascade(label='Opções', menu=opcaoMenu)
 menuBar.add_cascade(label='Sobre', menu=sobreMenu)
 sobreMenu.add_cascade(label='Regras', menu=ajudaMenu)
 
-opcaoMenu.add_command(label='Limpar tudo')
-opcaoMenu.add_separator()
-opcaoMenu.add_command(label='Limpar Aventura')
-opcaoMenu.add_command(label='Limpar Clima')
-opcaoMenu.add_command(label='Limpar Resposta')
-opcaoMenu.add_command(label='Limpar Evento')
-
 sobreMenu.add_separator()
-sobreMenu.add_command(label='Sobre os Desenvolvedores')
+sobreMenu.add_command(label='Sobre os Desenvolvedores', command=creditos)
 
 # CONFIG
 if __name__ == "__main__":

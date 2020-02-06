@@ -22,3 +22,5 @@ seu conteúdo.
 > Gerador de Eventos Complexos adicionado, Gerador de Terrenos (EM ANDAMENTO) e novo Design da GUI - 03/02/2020
 
 > Gerador de Terrenos e Gerador de Vilarejo finalizados - 04/02/2020
+
+> Gerador de Vilão, Mapa e Dados prontos, leves alterações no Design - 05/02/2020
