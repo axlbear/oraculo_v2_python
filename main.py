@@ -201,12 +201,16 @@ def rolarDados():
 
 def gerarDungeon():
     randomSalaDungeon = ['Vazia', 'Inimigo', '1d6 Inimigos', 'Enigma/Pista', 'Armadilha', 'Objetivo da Missão', 'NPC', 'Missão Extra', 'Tesouro']
+    randomTamanhoSala = ['Pequena', 'Pequena', 'Média', 'Média', 'Grande', 'Enorme']
+    randomQuantidadeSaidas = ['Sem saída', 'Uma Saída', 'Uma Saída', 'Duas Saídas', 'Duas Saídas', 'Três Saídas']
     randomMissaoExtra = ['Levar NPC para fora', 'Matar 1d6 Monstros', 'Destruír 1 Inimigo específico', 'Transportar item para fora/dentro', 'Proteger NPC', 'Invadir 1d6 Salas Trancadas', 'Fugir']
     randomInimigo = ['Goblin', 'Orc', 'Troll', 'Gnoll', 'Esqueleto', 'Morto-Vivo', 'Homem-Lagarto', 'Minotauro', 'Lesma Gigante', 'Hobgoblin', 'Bandido Comum', 'Espírito']
     randomArmadilha = ['Lâminas', 'Fosso', 'Dardo Venenoso', 'Explosão', 'Emboscada', 'Veneno', 'Armadilha Mágica', 'Buraco', 'Fogo', 'Espinhos']
     randomTesouroDungeon = ['Cura', 'Itens Específicos', 'Gemas', 'Objetos de Arte', 'Armas', 'Itens Diversos', 'Armaduras', 'Materiais especiais', 'Pergaminhos', 'Armas Mágicas']
 
     opcaoSalaDungeon.set(random.choice(randomSalaDungeon))
+    opcaoTamanhoSala.set(random.choice(randomTamanhoSala))
+    opcaoQuantidadeSaidas.set(random.choice(randomQuantidadeSaidas))
     opcaoMissaoExtra.set(random.choice(randomMissaoExtra))
     opcaoInimigo.set(random.choice(randomInimigo))
     opcaoArmadilha.set(random.choice(randomArmadilha))
@@ -356,15 +360,15 @@ tk.Label(geradorTerreno, text='Andares (Opcional): ').grid(row=4, column=0, stic
 tk.Label(geradorTerreno, text='Subterrâneos (Opcional): ').grid(row=5, column=0, sticky=tk.E)
 
 opcaoTerreno = tk.StringVar()
-tk.Entry(geradorTerreno, textvariable=opcaoTerreno, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+tk.Entry(geradorTerreno, textvariable=opcaoTerreno, state=tk.DISABLED, width=28).grid(row=1, column=1, sticky=tk.W)
 opcaoTamanho = tk.StringVar()
-tk.Entry(geradorTerreno, textvariable=opcaoTamanho, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+tk.Entry(geradorTerreno, textvariable=opcaoTamanho, state=tk.DISABLED, width=28).grid(row=2, column=1, sticky=tk.W)
 opcaoSalas = tk.StringVar()
-tk.Entry(geradorTerreno, textvariable=opcaoSalas, state=tk.DISABLED).grid(row=3, column=1, sticky=tk.W)
+tk.Entry(geradorTerreno, textvariable=opcaoSalas, state=tk.DISABLED, width=28).grid(row=3, column=1, sticky=tk.W)
 opcaoAndares = tk.StringVar()
-tk.Entry(geradorTerreno, textvariable=opcaoAndares, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
+tk.Entry(geradorTerreno, textvariable=opcaoAndares, state=tk.DISABLED, width=28).grid(row=4, column=1, sticky=tk.W)
 opcaoSubterraneos = tk.StringVar()
-tk.Entry(geradorTerreno, textvariable=opcaoSubterraneos, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
+tk.Entry(geradorTerreno, textvariable=opcaoSubterraneos, state=tk.DISABLED, width=28).grid(row=5, column=1, sticky=tk.W)
 
 tk.Button(geradorTerreno, text='Gerar Terreno', command=gerarTerreno).grid(row=6, column=0, columnspan=2)
 ####
@@ -377,38 +381,44 @@ tk.Label(geradorVilao, text='Alinhamento: ').grid(row=4, column=0, sticky=tk.E)
 tk.Label(geradorVilao, text='Tesouro ao ser derrotado: ').grid(row=5, column=0, sticky=tk.E)
 
 opcaoTipo = tk.StringVar()
-tk.Entry(geradorVilao, textvariable=opcaoTipo, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+tk.Entry(geradorVilao, textvariable=opcaoTipo, state=tk.DISABLED, width=28).grid(row=1, column=1, sticky=tk.W)
 opcaoOrigem = tk.StringVar()
-tk.Entry(geradorVilao, textvariable=opcaoOrigem, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+tk.Entry(geradorVilao, textvariable=opcaoOrigem, state=tk.DISABLED, width=28).grid(row=2, column=1, sticky=tk.W)
 opcaoObjetivo = tk.StringVar()
-tk.Entry(geradorVilao, textvariable=opcaoObjetivo, state=tk.DISABLED).grid(row=3, column=1, sticky=tk.W)
+tk.Entry(geradorVilao, textvariable=opcaoObjetivo, state=tk.DISABLED, width=28).grid(row=3, column=1, sticky=tk.W)
 opcaoPersonalidadeVilao = tk.StringVar()
-tk.Entry(geradorVilao, textvariable=opcaoPersonalidadeVilao, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
+tk.Entry(geradorVilao, textvariable=opcaoPersonalidadeVilao, state=tk.DISABLED, width=28).grid(row=4, column=1, sticky=tk.W)
 opcaoTesouro = tk.StringVar()
-tk.Entry(geradorVilao, textvariable=opcaoTesouro, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
+tk.Entry(geradorVilao, textvariable=opcaoTesouro, state=tk.DISABLED, width=28).grid(row=5, column=1, sticky=tk.W)
 
 tk.Button(geradorVilao, text='Gerar Vilão', command=gerarVilao).grid(row=6, column=0, columnspan=2)
 ####
 #### Gerador Dungeon
 tk.Label(geradorDungeon, text='Gerador de Dungeon', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
 tk.Label(geradorDungeon, text='Sala :').grid(row=1, column=0, sticky=tk.E)
-tk.Label(geradorDungeon, text='Missão Extra: ').grid(row=2, column=0, sticky=tk.E)
-tk.Label(geradorDungeon, text='Inimigo: ').grid(row=3, column=0, sticky=tk.E)
-tk.Label(geradorDungeon, text='Armadilha').grid(row=4, column=0, sticky=tk.E)
-tk.Label(geradorDungeon, text='Tesouros: ').grid(row=5, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Tamanho da Sala: ').grid(row=2, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Quantidade de Saídas: ').grid(row=3, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Missão Extra: ').grid(row=4, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Inimigo: ').grid(row=5, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Armadilha').grid(row=6, column=0, sticky=tk.E)
+tk.Label(geradorDungeon, text='Tesouros: ').grid(row=7, column=0, sticky=tk.E)
 
 opcaoSalaDungeon = tk.StringVar()
 tk.Entry(geradorDungeon, textvariable=opcaoSalaDungeon, width=31, state=tk.DISABLED).grid(row=1, column=1, sticky=tk.W)
+opcaoTamanhoSala = tk.StringVar()
+tk.Entry(geradorDungeon, textvariable=opcaoTamanhoSala, state=tk.DISABLED, width=31).grid(row=2, column=1, sticky=tk.W)
+opcaoQuantidadeSaidas = tk.StringVar()
+tk.Entry(geradorDungeon, textvariable=opcaoQuantidadeSaidas, state=tk.DISABLED, width=31).grid(row=3, column=1, sticky=tk.W)
 opcaoMissaoExtra = tk.StringVar()
-tk.Entry(geradorDungeon, textvariable=opcaoMissaoExtra, width=31, state=tk.DISABLED).grid(row=2, column=1, sticky=tk.W)
+tk.Entry(geradorDungeon, textvariable=opcaoMissaoExtra, width=31, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
 opcaoInimigo = tk.StringVar()
-tk.Entry(geradorDungeon, textvariable=opcaoInimigo, width=31, state=tk.DISABLED).grid(row=3, column=1, sticky=tk.W)
+tk.Entry(geradorDungeon, textvariable=opcaoInimigo, width=31, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
 opcaoArmadilha = tk.StringVar()
-tk.Entry(geradorDungeon, textvariable=opcaoArmadilha, width=31, state=tk.DISABLED).grid(row=4, column=1, sticky=tk.W)
+tk.Entry(geradorDungeon, textvariable=opcaoArmadilha, width=31, state=tk.DISABLED).grid(row=6, column=1, sticky=tk.W)
 opcaoTesouroDungeon = tk.StringVar()
-tk.Entry(geradorDungeon, textvariable=opcaoTesouroDungeon, width=31, state=tk.DISABLED).grid(row=5, column=1, sticky=tk.W)
+tk.Entry(geradorDungeon, textvariable=opcaoTesouroDungeon, width=31, state=tk.DISABLED).grid(row=7, column=1, sticky=tk.W)
 
-tk.Button(geradorDungeon, text='Gerar Dungeon', command=gerarDungeon).grid(row=6, column=0, columnspan=2)
+tk.Button(geradorDungeon, text='Gerar Dungeon', command=gerarDungeon).grid(row=8, column=0, columnspan=2)
 ####
 #### Gerador Resposta
 tk.Label(geradorRespostaFrame, text='Resposta', font=('Tahoma', 12, 'bold'), relief=tk.SUNKEN, bd=3, padx=4, pady=4).grid(row=0, column=0, columnspan=2)
